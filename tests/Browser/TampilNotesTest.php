@@ -5,7 +5,7 @@ namespace Tests\Browser;
 use Laravel\Dusk\Browser;
 use Tests\DuskTestCase;
 
-class NotesTest extends DuskTestCase
+class TampilNotesTest extends DuskTestCase
 {
     /**
      * A Dusk test example.
@@ -19,12 +19,12 @@ class NotesTest extends DuskTestCase
                 ->type('password', 'password') // mengisi input password
                 ->press('LOG IN'); // menekan button LOG IN
 
-            $browser->visit('/create-note') // mengunjungi url halaman register
-                ->assertSee('Title') // pastikan form Title terlihat
-                ->assertSee('Description') // pastikan form Description terlihat
-                ->type('title', 'notesbaru') // mengisi input
-                ->type('description', 'notes baru 2') // mengisi input
-                ->press('CREATE'); // menekan button Create
+            $browser->visit('/notes') // mengunjungi halaman daftar notes
+            ->assertSee('notesbaru') // memastikan judul terlihat
+            ->assertSee('notes baru 2') // memastikan deskripsi terlihat
+            ->assertSee('adminexample') // memastikan nama author terlihat
+            ->press('Delete') // jika tombol adalah <button>
+            ->clickLink('Edit'); // klik tombol/link edit pertama yang ditemukan
         });
     }
 }
